@@ -89,8 +89,6 @@ public class ThemeRulesServlet extends HttpServlet {
 
 		// TODO implement security check !!!
 
-
-		System.out.println("Param map: " + request.getParameterMap());
 		String cmd = ParamUtil.getString(request, PARAM_CMD);
 
 		if (COMMAND_SAVE.equals(cmd)) saveRule(request, response);
@@ -106,13 +104,9 @@ public class ThemeRulesServlet extends HttpServlet {
 	        ThemeRuleLocalServiceUtil.deleteThemeRule(ruleId);
         } catch (PortalException e) {
 			log("Failed to delete theme rule!", e);
-			// TODO delete this
-			e.printStackTrace();
 			return;
        } catch (SystemException e) {
 			log("Failed to delete theme rule!", e);
-			// TODO delete this
-			e.printStackTrace();
        }
 	}
 
@@ -125,8 +119,6 @@ public class ThemeRulesServlet extends HttpServlet {
 			        .getName()));
 		} catch (SystemException e) {
 			log("Failed to create theme rule!", e);
-			// TODO delete this
-			e.printStackTrace();
 			return;
 		}
 
@@ -191,8 +183,7 @@ public class ThemeRulesServlet extends HttpServlet {
 		}
 
 		if (emptyRule) {
-			System.out.println("Rule is empty. Not saved!");
-			// TODO return error messge
+			log("Rule is empty. Not saved!");
 			return;
 		}
 
@@ -211,8 +202,6 @@ public class ThemeRulesServlet extends HttpServlet {
 			ThemeRuleLocalServiceUtil.addThemeRule(themeRule);
 		} catch (SystemException e) {
 			log("Failed to save theme rule!", e);
-			// TODO delete this
-			e.printStackTrace();
 			return;
 		}
 
