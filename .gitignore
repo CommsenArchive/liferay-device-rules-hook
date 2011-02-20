@@ -3,3 +3,4 @@
 .settings
 bin
 docroot/WEB-INF/classes/
+docroot/WEB-INF/lib/theme-rules-hook-service.jar
