@@ -17,12 +17,12 @@
 <div class="float-container">
 
 	<h3>
-		<span class="header-title">Add rule </span> 
+		<span class="header-title"><liferay-ui:message key="rules.add-rule" /></span> 
 	</h3>
 	<table class="lfr-table">
 		<tbody>
 			<tr>
-				<td><label for="<portlet:namespace />rulePriority">Priority</label></td>
+				<td><label for="<portlet:namespace />rulePriority"><liferay-ui:message key="rules.priority" /></label></td>
 				<td>
 					<input id="<portlet:namespace />rulePriority" name="<portlet:namespace />rulePriority" size="4" value="100"/>
 				</td>
@@ -31,13 +31,13 @@
 				</td>
 			</tr>
 			<tr>
-				<th colspan="4">If device matches the following criteria</th>
+				<th colspan="4"><liferay-ui:message key="rules.if-device-matches-the-following-criteria" /></th>
 			</tr>
 			<tr>
-				<td><label for="<portlet:namespace />brand">Brand is</label></td>
+				<td><label for="<portlet:namespace />brand"><liferay-ui:message key="rules.brand-is" /></label></td>
 				<td>
 					<select id="<portlet:namespace />brand" name="<portlet:namespace />brand" >
-						<option value="">ANY</option>
+						<option value=""><liferay-ui:message key="rules.any" /></option>
 						<%
 						for (VersionableName brand : DevicesUtil.getBrands()) {
 						%>
@@ -47,18 +47,18 @@
 						%>
 					</select>
 				</td>
-				<td><label for="<portlet:namespace />model">model</label></td>
+				<td><label for="<portlet:namespace />model"><liferay-ui:message key="rules.model" /></label></td>
 				<td>
 					<select id="<portlet:namespace />model" name="<portlet:namespace />model">
-						<option value="">ANY</option>
+						<option value=""><liferay-ui:message key="rules.any" /></option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td><label for="<portlet:namespace />os">Operating system is</label></td>
+				<td><label for="<portlet:namespace />os"><liferay-ui:message key="rules.operating-system-is" /></label></td>
 				<td>
 					<select id="<portlet:namespace />os" name="<portlet:namespace />os" >
-						<option value="">ANY</option>
+						<option value=""><liferay-ui:message key="rules.any" /></option>
 						<%
 						for (VersionableName os : DevicesUtil.getOperatingSystems()) {
 						%>
@@ -68,18 +68,18 @@
 						%>
 					</select>
 				</td>
-				<td><label for="<portlet:namespace />osVersion">version</label></td>
+				<td><label for="<portlet:namespace />osVersion"><liferay-ui:message key="rules.version" /></label></td>
 				<td>
 					<select id="<portlet:namespace />osVersion" name="<portlet:namespace />osVersion">
-						<option value="">ANY</option>
+						<option value=""><liferay-ui:message key="rules.any" /></option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td><label for="<portlet:namespace />">Browser is</label></td>
+				<td><label for="<portlet:namespace />"><liferay-ui:message key="rules.browser-is" /></label></td>
 				<td>
 					<select id="<portlet:namespace />browser" name="<portlet:namespace />browser" >
-						<option value="">ANY</option>
+						<option value=""><liferay-ui:message key="rules.any" /></option>
 						<%
 						for (VersionableName browser : DevicesUtil.getBrowsers()) {
 						%>
@@ -89,18 +89,18 @@
 						%>
 					</select>
 				</td>
-				<td><label for="<portlet:namespace />browserVersion">version</label></td>
+				<td><label for="<portlet:namespace />browserVersion"><liferay-ui:message key="rules.version" /></label></td>
 				<td>
 					<select id="<portlet:namespace />browserVersion" name="<portlet:namespace />browserVersion">
-						<option value="">ANY</option>
+						<option value=""><liferay-ui:message key="rules.any" /></option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td><label for="<portlet:namespace />pointingMethod">Pointing method is</label></td>
+				<td><label for="<portlet:namespace />pointingMethod"><liferay-ui:message key="rules.pointing-method-is" /></label></td>
 				<td>
 					<select id="<portlet:namespace />pointingMethod" name="<portlet:namespace />pointingMethod" >
-						<option value="">ANY</option>
+						<option value=""><liferay-ui:message key="rules.any" /></option>
 						<%
 						for (String pointingMethod : DevicesUtil.getPointingMethods()) {
 						%>
@@ -114,24 +114,24 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><label for="<portlet:namespace />isTablet">Device is tablet</label></td>
+				<td><label for="<portlet:namespace />isTablet"><liferay-ui:message key="rules.device-is-tablet" /></label></td>
 				<td>
 					<select id="<portlet:namespace />isTablet" name="<portlet:namespace />isTablet" >
-						<option value="">doesn't matter</option>
-						<option>yes</option>
-						<option>no</option>
+						<option value=""><liferay-ui:message key="rules.doesn-t-matter" /></option>
+						<option value="yes"><liferay-ui:message key="yes" /></option>
+						<option value="no"><liferay-ui:message key="no" /></option>
 					</select>
 				</td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td><label for="<portlet:namespace />hasQwertyKeyboard">Device has qwerty keyboard</label></td>
+				<td><label for="<portlet:namespace />hasQwertyKeyboard"><liferay-ui:message key="rules.device-has-qwerty-keyboard" /></label></td>
 				<td>
 					<select id="<portlet:namespace />hasQwertyKeyboard" name="<portlet:namespace />hasQwertyKeyboard" >
-						<option value="">doesn't matter</option>
-						<option>yes</option>
-						<option>no</option>
+						<option value=""><liferay-ui:message key="rules.doesn-t-matter" /></option>
+						<option value="yes"><liferay-ui:message key="yes" /></option>
+						<option value="no"><liferay-ui:message key="no" /></option>
 					</select>
 				</td>
 				<td></td>
@@ -139,17 +139,17 @@
 			</tr>
 			<tr>
 				<td colspan="4">
-					<strong>Then</strong>
+					<strong><liferay-ui:message key="rules.then" /></strong>
 				</td>
 			</tr>
 			<tr>
-				<td><label>Apply theme</label></td>
+				<td><label><liferay-ui:message key="rules.apply-theme" /></label></td>
 				<td>
 					<div style="position:relative;">
 						<input id="<portlet:namespace />dynamicThemeId" name="<portlet:namespace />dynamicThemeId" type="hidden"/>
 						<input id="<portlet:namespace />dynamicColorSchemeId" name="<portlet:namespace />dynamicColorSchemeId" type="hidden"/>
 						<a class="theme-entry" href="#" id="<portlet:namespace />selectedTheme">
-							<span class="theme-title" id="<portlet:namespace />selectedThemeName">no theme selected</span>
+							<span class="theme-title" id="<portlet:namespace />selectedThemeName"><liferay-ui:message key="rules.no-theme-selected" /></span>
 							<img class="theme-thumbnail" id="<portlet:namespace />selectedThemeImg" class="theme-thumbnail" src="/html/themes/classic/images/spacer.png" />
 						</a>
 					</div>
@@ -168,7 +168,7 @@ List<ThemeRuleInfo> themeRules	= ThemeSelectingUtil.getThemeRulesInfo(company.ge
 <div class="float-container">
 
 	<h3>
-		<span class="header-title"> Rules </span> 
+		<span class="header-title"><liferay-ui:message key="rules.rules" />  </span> 
 	</h3>
 	 
 	<liferay-ui:search-container
@@ -242,7 +242,7 @@ List<ThemeRuleInfo> themeRules	= ThemeSelectingUtil.getThemeRulesInfo(company.ge
 				Fourth column contains delete button 
 			--%>
 			<liferay-ui:search-container-column-text>
-				<a href="javascript:<portlet:namespace />deleteRule(<%=currentRule.getId() %>)">Delete this rule</a>
+				<input type="button" onClick="javascript:<portlet:namespace />deleteRule(<%=currentRule.getId() %>)" value="<liferay-ui:message key="rules.delete-this-rule" />" />
 			</liferay-ui:search-container-column-text>
 	
 		</liferay-ui:search-container-row>
@@ -350,7 +350,7 @@ List<ThemeRuleInfo> themeRules	= ThemeSelectingUtil.getThemeRulesInfo(company.ge
 			List<ColorScheme> colorSchemes = curTheme.getColorSchemes();
 
 		%>
-			themes += '	<li><a class="<portlet:namespace />dynamic-theme-entry" href="javascript:<portlet:namespace />selectLookAndFeel(\'<%= curTheme.getThemeId() %>\', \'\', \'<%= curTheme.getContextPath() %><%= curTheme.getImagesPath() %>/thumbnail.png\', \'<%= curTheme.getName() %>\');">';
+			themes += '	<li><a class="theme-entry" href="javascript:<portlet:namespace />selectLookAndFeel(\'<%= curTheme.getThemeId() %>\', \'\', \'<%= curTheme.getContextPath() %><%= curTheme.getImagesPath() %>/thumbnail.png\', \'<%= curTheme.getName() %>\');">';
 			themes += '			<span class="theme-title"><%= curTheme.getName() %></span>';
 			themes += '			<img alt="<%= curTheme.getName() %>" class="theme-thumbnail" src="<%= curTheme.getContextPath() %><%= curTheme.getImagesPath() %>/thumbnail.png" title="<%= curTheme.getName() %>" />';
 		<%
@@ -362,7 +362,7 @@ List<ThemeRuleInfo> themeRules	= ThemeSelectingUtil.getThemeRulesInfo(company.ge
 				while (colorSchemeIterator.hasNext()) {
 					ColorScheme curColorScheme = colorSchemeIterator.next();
 		%>
-			themes += '	<li><a class="<portlet:namespace />dynamic-theme-entry" href="javascript:<portlet:namespace />selectLookAndFeel(\'<%= curTheme.getThemeId() %>\', \'<%= curColorScheme.getColorSchemeId() %>\', \'<%= curTheme.getContextPath() %><%= curColorScheme.getColorSchemeThumbnailPath() %>/thumbnail.png\', \'<%= curTheme.getName() %> (<%= curColorScheme.getName() %>)\');">';
+			themes += '	<li><a class="theme-entry" href="javascript:<portlet:namespace />selectLookAndFeel(\'<%= curTheme.getThemeId() %>\', \'<%= curColorScheme.getColorSchemeId() %>\', \'<%= curTheme.getContextPath() %><%= curColorScheme.getColorSchemeThumbnailPath() %>/thumbnail.png\', \'<%= curTheme.getName() %> (<%= curColorScheme.getName() %>)\');">';
 			themes += '			<span class="theme-title"><%= curColorScheme.getName() %></span>';
 			themes += '			<img alt="<%= curColorScheme.getName() %>" class="theme-thumbnail" src="<%= curTheme.getContextPath() %><%= curColorScheme.getColorSchemeThumbnailPath() %>/thumbnail.png" title="<%= curColorScheme.getName() %>" />';
 			themes += '	</a></li>';
@@ -384,7 +384,7 @@ List<ThemeRuleInfo> themeRules	= ThemeSelectingUtil.getThemeRulesInfo(company.ge
 
 		A.one('#<portlet:namespace />selectedTheme').on('click', function (e) {
 			var t = new A.Dialog({
-				title: 'Select theme',
+				title: '<liferay-ui:message key="rules.select-theme" />',
 				centered: true,
 				modal: true,
 				width: 500,

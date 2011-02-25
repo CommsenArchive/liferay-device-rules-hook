@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 
 <project name="theme-rules-hook" basedir="." default="deploy">
+	
+	<property name="lang.dir" value="docroot/WEB-INF/src/content" />
+	<property name="lang.file" value="Language" />
+	
 	<import file="../build-common-hook.xml" />
 </project>
