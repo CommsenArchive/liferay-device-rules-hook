@@ -1,9 +1,13 @@
 
-<%@page import="com.commsen.liferay.multidevice.rules.themes.ThemeAndColorScheme"%>
+<%@page import="com.commsen.liferay.multidevice.rules.actions.NoAction"%>
+<%@page import="com.commsen.liferay.multidevice.rules.actions.RedirectAction"%>
+<%@page import="com.commsen.liferay.multidevice.rules.actions.ChangeThemeAction"%>
+<%@page import="com.commsen.liferay.multidevice.rules.actions.DeviceAction"%>
 <%@page import="org.apache.commons.lang.StringUtils"%>
 
-<%@page import="com.commsen.liferay.multidevice.rules.themes.ThemeSelectingUtil"%>
-<%@page import="com.commsen.liferay.multidevice.rules.themes.ThemeRuleInfo"%>
+<%@page import="com.commsen.liferay.multidevice.rules.DeviceRulesUtil"%>
+<%@page import="com.commsen.liferay.multidevice.rules.RuleInfo"%>
+<%@page import="com.commsen.liferay.multidevice.rules.ThemeAndColorScheme"%>
 <%@page import="com.commsen.liferay.multidevice.VersionableName"%>
 <%@page import="com.commsen.liferay.multidevice.DevicesUtil"%>
 
@@ -143,15 +147,29 @@
 				</td>
 			</tr>
 			<tr>
-				<td><label><liferay-ui:message key="rules.apply-theme" /></label></td>
+				<td><input type="radio" name="<portlet:namespace />ruleAction" id="<portlet:namespace />ruleAction_changeTheme" value="<%=ChangeThemeAction.NAME %>"/> <label for="<portlet:namespace />ruleAction_changeTheme"><liferay-ui:message key="rules.apply-theme" /></label></td>
 				<td>
 					<div style="position:relative;">
 						<input id="<portlet:namespace />dynamicThemeId" name="<portlet:namespace />dynamicThemeId" type="hidden"/>
 						<input id="<portlet:namespace />dynamicColorSchemeId" name="<portlet:namespace />dynamicColorSchemeId" type="hidden"/>
-						<a class="theme-entry" href="#" id="<portlet:namespace />selectedTheme">
-							<span class="theme-title" id="<portlet:namespace />selectedThemeName"><liferay-ui:message key="rules.no-theme-selected" /></span>
-							<img class="theme-thumbnail" id="<portlet:namespace />selectedThemeImg" class="theme-thumbnail" src="/html/themes/classic/images/spacer.png" />
-						</a>
+						<label for="<portlet:namespace />ruleAction_changeTheme">
+							<a class="theme-entry" href="#" id="<portlet:namespace />selectedTheme">
+								<span class="theme-title" id="<portlet:namespace />selectedThemeName"><liferay-ui:message key="rules.no-theme-selected" /></span>
+								<img class="theme-thumbnail" id="<portlet:namespace />selectedThemeImg" class="theme-thumbnail" src="/html/themes/classic/images/spacer.png" />
+							</a>
+						</label>
+					</div>
+				</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="<portlet:namespace />ruleAction" id="<portlet:namespace />ruleAction_redirect" value="<%=RedirectAction.NAME %>"/> <label for="<portlet:namespace />ruleAction_redirect"><liferay-ui:message key="rules.redirect" /></label></td>
+				<td>
+					<div style="position:relative;">
+						<label for="<portlet:namespace />ruleAction_redirect">
+							<input id="<portlet:namespace />redirectRuleURL" name="<portlet:namespace />redirectRuleURL" type="text"/>
+						</label>
 					</div>
 				</td>
 				<td></td>
@@ -162,7 +180,7 @@
 </div>
 
 <%
-List<ThemeRuleInfo> themeRules	= ThemeSelectingUtil.getThemeRulesInfo(company.getCompanyId(), liveGroupId, selPlid);
+List<RuleInfo> deviceRules = DeviceRulesUtil.getRules(company.getCompanyId(), liveGroupId, selPlid);
 %>
 
 <div class="float-container">
@@ -180,15 +198,15 @@ List<ThemeRuleInfo> themeRules	= ThemeSelectingUtil.getThemeRulesInfo(company.ge
 			Define result list and count 
 		--%>
 		<liferay-ui:search-container-results 
-			results="<%=themeRules %>"
-			total="<%=themeRules.size() %>"
+			results="<%=deviceRules %>"
+			total="<%=deviceRules.size() %>"
 			/>
 			
 		<%-- 
 			Configure table row  
 		--%>
 		<liferay-ui:search-container-row
-			className="com.commsen.liferay.multidevice.rules.themes.ThemeRuleInfo"
+			className="com.commsen.liferay.multidevice.rules.RuleInfo"
 			keyProperty="id"
 			modelVar="currentRule"
 		>
@@ -208,34 +226,69 @@ List<ThemeRuleInfo> themeRules	= ThemeSelectingUtil.getThemeRulesInfo(company.ge
 			</liferay-ui:search-container-column-text>
 	
 			<%-- 
-				Third column contains theme icon 
+				Third column contains action 
 			--%>
 			<liferay-ui:search-container-column-text name="theme">
-				<%
-				ThemeAndColorScheme themeAndColorScheme = currentRule.getThemeAndColorScheme();
-				Theme ruleTheme = ThemeLocalServiceUtil.getTheme(company.getCompanyId(), themeAndColorScheme.getThemeId(), false);
-				ColorScheme ruleColorScheme = null;
-				if (!StringUtils.isBlank(themeAndColorScheme.getColorSchemeId())) {
-					ruleColorScheme = ThemeLocalServiceUtil.getColorScheme(company.getCompanyId(), ruleTheme.getThemeId(), themeAndColorScheme.getColorSchemeId(), false);
-				}
-				
-				String name;
-				String url; 
-				if (ruleColorScheme == null) { 
-					name = ruleTheme.getName();
-					url = ruleTheme.getContextPath()+ ruleTheme.getImagesPath() + "/thumbnail.png";
+<%
+				DeviceAction deviceAction = currentRule.getDeviceAction(); 
+				if (deviceAction != null) {
+					if (deviceAction instanceof ChangeThemeAction) {
+						ChangeThemeAction changeThemeAction = (ChangeThemeAction)deviceAction;
+						ThemeAndColorScheme themeAndColorScheme = changeThemeAction.getThemeAndColorScheme();
+						Theme ruleTheme = ThemeLocalServiceUtil.getTheme(company.getCompanyId(), themeAndColorScheme.getThemeId(), false);
+						ColorScheme ruleColorScheme = null;
+						if (!StringUtils.isBlank(themeAndColorScheme.getColorSchemeId())) {
+							ruleColorScheme = ThemeLocalServiceUtil.getColorScheme(company.getCompanyId(), ruleTheme.getThemeId(), themeAndColorScheme.getColorSchemeId(), false);
+						}
+						
+						String name;
+						String url; 
+						if (ruleColorScheme == null) { 
+							name = ruleTheme.getName();
+							url = ruleTheme.getContextPath()+ ruleTheme.getImagesPath() + "/thumbnail.png";
+						} else {
+							name = ruleTheme.getName() + "(" + ruleColorScheme.getName() + ")";
+							url = ruleTheme.getContextPath()+ ruleColorScheme.getColorSchemeThumbnailPath() + "/thumbnail.png";
+						} 
+%>
+						<div style="position:relative;">
+							<a class="theme-entry">
+								<span class="theme-title"><%= name %></span>
+								<img alt="<%=name %>" class="theme-thumbnail" src="<%=url %>" title="<%=name %>" />
+							</a>
+						</div>
+<%
+					} else  if (deviceAction instanceof RedirectAction) {
+						RedirectAction redirectAction = (RedirectAction)deviceAction;
+						String url = redirectAction.getUrl();
+%>
+						<div style="position:relative;">
+							<liferay-ui:message key="rules.redirect" /> <%=url %>
+						</div>
+<%
+					} else  if (deviceAction instanceof NoAction) {
+%>
+						<div style="position:relative;">
+							NO ACTION !!!
+						</div>
+<%
+						
+					} else {
+%>
+						<div style="position:relative;">
+							unknown action
+						</div>
+<%
+						
+					}
 				} else {
-					name = ruleTheme.getName() + "(" + ruleColorScheme.getName() + ")";
-					url = ruleTheme.getContextPath()+ ruleColorScheme.getColorSchemeThumbnailPath() + "/thumbnail.png";
-				} 
-				%>
-				<div style="position:relative;">
-					<a class="theme-entry">
-						<span class="theme-title"><%= name %></span>
-						<img alt="<%=name %>" class="theme-thumbnail" src="<%=url %>" title="<%=name %>" />
-					</a>
-				</div>
-				
+%>
+					<div style="position:relative;">
+						NO action !!!
+					</div>
+<%
+				}
+%>
 			</liferay-ui:search-container-column-text>
 	
 			<%-- 

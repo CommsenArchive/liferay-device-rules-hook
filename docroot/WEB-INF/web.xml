@@ -6,7 +6,7 @@
 
 	<context-param>
 		<param-name>portalContextConfigLocation</param-name>
-		<param-value>/WEB-INF/classes/META-INF/theme-rules-spring.xml</param-value>
+		<param-value>/WEB-INF/classes/META-INF/device-rules-spring.xml</param-value>
 	</context-param>
 	<listener>
 		<listener-class>com.liferay.portal.kernel.spring.context.PortletContextLoaderListener</listener-class>
@@ -17,7 +17,7 @@
 		<servlet-class>com.liferay.portal.kernel.servlet.PortalDelegateServlet</servlet-class>
 		<init-param>
 			<param-name>servlet-class</param-name>
-			<param-value>com.commsen.liferay.multidevice.rules.themes.ThemeRulesServlet</param-value>
+			<param-value>com.commsen.liferay.multidevice.rules.RulesPersistenceServlet</param-value>
 		</init-param>
 		<init-param>
 			<param-name>sub-context</param-name>

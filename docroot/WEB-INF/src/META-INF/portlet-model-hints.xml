@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <model-hints>
-	<model name="com.commsen.liferay.multidevice.rules.themes.model.ThemeRule">
+	<model name="com.commsen.liferay.multidevice.rules.model.Rule">
 		<field name="rid" type="long" />
 		<field name="companyId" type="long" />
 		<field name="groupId" type="long" />
@@ -15,8 +15,10 @@
 		<field name="pointingMethod" type="String" />
 		<field name="tablet" type="String" />
 		<field name="qwertyKeyboad" type="String" />
+		<field name="action" type="String" />
 		<field name="themeId" type="String" />
 		<field name="colorSchemeId" type="String" />
+		<field name="url" type="String" />
 		<field name="priority" type="int" />
 	</model>
 </model-hints>

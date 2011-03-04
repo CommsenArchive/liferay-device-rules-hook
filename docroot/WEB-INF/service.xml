@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
-<service-builder package-path="com.commsen.liferay.multidevice.rules.themes">
+<service-builder package-path="com.commsen.liferay.multidevice.rules">
 	<author>Milen Dyankov</author>
 	<namespace>MultiDevice</namespace>
 
-	<entity name="ThemeRule" local-service="true" remote-service="true">
+	<entity name="Rule" local-service="true" remote-service="true">
 		<!-- Primary key column -->
 		<column name="rid" type="long" primary="true" />
 
@@ -25,8 +25,10 @@
 		<column name="qwertyKeyboad" type="String" convert-null="false" />
 
 		<!-- theme columns -->
+		<column name="action" type="String" convert-null="false"/>
 		<column name="themeId" type="String" convert-null="false"/>
 		<column name="colorSchemeId" type="String" convert-null="false"/>
+		<column name="url" type="String" convert-null="false"/>
 
 		<!-- theme columns -->
 		<column name="priority" type="int" />
@@ -42,10 +44,23 @@
 			<finder-column name="groupId" />
 		</finder>
 
+		<finder name="GroupAndAction" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="groupId" />
+			<finder-column name="action" />
+		</finder>
+
 		<finder name="Page" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="groupId" />
 			<finder-column name="layoutId" />
+		</finder>
+
+		<finder name="PageAndAction" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="groupId" />
+			<finder-column name="layoutId" />
+			<finder-column name="action" />
 		</finder>
 		
 		<finder name="All" return-type="Collection">
@@ -62,4 +77,5 @@
 			<finder-column name="tablet" />
 			<finder-column name="qwertyKeyboad" />
 		</finder>
-	</entity></service-builder>
+	</entity>
+</service-builder>

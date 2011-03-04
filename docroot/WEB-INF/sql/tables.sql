@@ -1,4 +1,4 @@
-create table MultiDevice_ThemeRule (
+create table MultiDevice_Rule (
 	rid LONG not null primary key,
 	companyId LONG,
 	groupId LONG,
@@ -12,7 +12,9 @@ create table MultiDevice_ThemeRule (
 	pointingMethod VARCHAR(75) null,
 	tablet VARCHAR(75) null,
 	qwertyKeyboad VARCHAR(75) null,
+	action VARCHAR(75) null,
 	themeId VARCHAR(75) null,
 	colorSchemeId VARCHAR(75) null,
+	url VARCHAR(75) null,
 	priority INTEGER
 );

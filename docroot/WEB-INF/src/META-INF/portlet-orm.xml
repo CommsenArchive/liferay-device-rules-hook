@@ -7,7 +7,7 @@
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
-	<mapped-superclass class="com.commsen.liferay.multidevice.rules.themes.model.impl.ThemeRuleModelImpl">
+	<mapped-superclass class="com.commsen.liferay.multidevice.rules.model.impl.RuleModelImpl">
 		<attributes>
 			<id name="rid" />
 			<basic name="companyId" />
@@ -22,14 +22,16 @@
 			<basic name="pointingMethod" />
 			<basic name="tablet" />
 			<basic name="qwertyKeyboad" />
+			<basic name="action" />
 			<basic name="themeId" />
 			<basic name="colorSchemeId" />
+			<basic name="url" />
 			<basic name="priority" />
 			<transient name="primaryKey" />
 		</attributes>
 	</mapped-superclass>
-	<entity class="com.commsen.liferay.multidevice.rules.themes.model.impl.ThemeRuleImpl" name="ThemeRule">
-		<table name="MultiDevice_ThemeRule" />
+	<entity class="com.commsen.liferay.multidevice.rules.model.impl.RuleImpl" name="Rule">
+		<table name="MultiDevice_Rule" />
 		<attributes />
 	</entity>
 </entity-mappings>
