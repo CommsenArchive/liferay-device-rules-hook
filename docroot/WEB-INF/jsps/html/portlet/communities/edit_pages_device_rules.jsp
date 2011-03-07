@@ -1,3 +1,4 @@
+<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@page import="com.commsen.liferay.multidevice.rules.actions.NoAction"%>
 <%@page import="com.commsen.liferay.multidevice.rules.actions.RedirectAction"%>
@@ -17,6 +18,11 @@
 <%@page import="com.liferay.portal.service.ThemeLocalServiceUtil"%>
 <%@page import="java.util.List"%>
 
+
+<liferay-ui:error key="failed-to-create-rule" message="failed-to-create-rule" />
+<liferay-ui:error key="failed-to-save-rule" message="failed-to-save-rule" />
+<liferay-ui:error key="failed-to-delete-rule" message="failed-to-delete-rule" />
+<liferay-ui:error key="rule-is-empty" message="rule-is-empty" />
 
 <div class="float-container">
 
@@ -228,7 +234,7 @@ List<RuleInfo> deviceRules = DeviceRulesUtil.getRules(company.getCompanyId(), li
 			<%-- 
 				Third column contains action 
 			--%>
-			<liferay-ui:search-container-column-text name="theme">
+			<liferay-ui:search-container-column-text name="action">
 <%
 				DeviceAction deviceAction = currentRule.getDeviceAction(); 
 				if (deviceAction != null) {
@@ -252,6 +258,7 @@ List<RuleInfo> deviceRules = DeviceRulesUtil.getRules(company.getCompanyId(), li
 						} 
 %>
 						<div style="position:relative;">
+							<liferay-ui:message key="rules.apply-theme" />
 							<a class="theme-entry">
 								<span class="theme-title"><%= name %></span>
 								<img alt="<%=name %>" class="theme-thumbnail" src="<%=url %>" title="<%=name %>" />
@@ -448,7 +455,6 @@ List<RuleInfo> deviceRules = DeviceRulesUtil.getRules(company.getCompanyId(), li
 				
 		function <portlet:namespace />saveRule(){
 			document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "save_theme_rule";		
-			document.<portlet:namespace />fm.action = "/delegate/themeRules";		
 			submitForm(document.<portlet:namespace />fm);
 		}		
 
@@ -462,7 +468,6 @@ List<RuleInfo> deviceRules = DeviceRulesUtil.getRules(company.getCompanyId(), li
 		function (deleteRuleId) {
 			document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "delete_theme_rule";		
 			document.<portlet:namespace />fm.<portlet:namespace />deleteRuleId.value = deleteRuleId;
-			document.<portlet:namespace />fm.action = "/delegate/themeRules";		
 			submitForm(document.<portlet:namespace />fm);
 		},
 		['aui-base']

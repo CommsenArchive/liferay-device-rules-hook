@@ -169,6 +169,7 @@ public class RuleLocalServiceImpl extends RuleLocalServiceBaseImpl {
 		pageMatchesOrNull.add(PropertyFactoryUtil.forName("layoutId").eq(0l));
 		pageMatchesOrNull.add(PropertyFactoryUtil.forName("layoutId").eq(layoutId));
 
+
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(Rule.class);
 		dynamicQuery.add(PropertyFactoryUtil.forName("companyId").eq(companyId));
 		dynamicQuery.add(PropertyFactoryUtil.forName("groupId").eq(groupId));
@@ -179,6 +180,7 @@ public class RuleLocalServiceImpl extends RuleLocalServiceBaseImpl {
 		dynamicQuery.add(pointingMethodMatchesOrNull);
 		dynamicQuery.add(tabletMatchesOrNull);
 		dynamicQuery.add(qwertyKeyboardMatchesOrNull);
+		dynamicQuery.addOrder(OrderFactoryUtil.desc("layoutId"));
 		dynamicQuery.addOrder(OrderFactoryUtil.asc("priority"));
 
 		try {

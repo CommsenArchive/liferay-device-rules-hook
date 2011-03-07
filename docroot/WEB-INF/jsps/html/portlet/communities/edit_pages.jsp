@@ -134,7 +134,7 @@ if (tabs2.equals("pages") && !tabs3.equals("look-and-feel") && (!tabs3.equals("c
 }
 
 if (!tabs2.equals("export-import") && (tabs2.equals("look-and-feel") || tabs3.equals("look-and-feel"))) {
-	if (!tabs4.equals("regular-browsers") && !tabs4.equals("mobile-devices") && !tabs4.equals("themes-rules")) {
+	if (!tabs4.equals("regular-browsers") && !tabs4.equals("mobile-devices") && !tabs4.equals("device-rules")) {
 		tabs4 = "regular-browsers";
 	}
 }

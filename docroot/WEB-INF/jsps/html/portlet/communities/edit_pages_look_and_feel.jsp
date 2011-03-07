@@ -29,7 +29,7 @@ PortletURL portletURL = (PortletURL)request.getAttribute("edit_pages.jsp-portlet
 %>
 
 <liferay-ui:tabs
-	names="regular-browsers,mobile-devices,themes-rules"
+	names="regular-browsers,mobile-devices,device-rules"
 	param="tabs4"
 	url='<%= portletURL.toString() + "&" + renderResponse.getNamespace() + "selPlid=" + selPlid %>'
 />
@@ -160,7 +160,7 @@ PortletURL portletURL = (PortletURL)request.getAttribute("edit_pages.jsp-portlet
 		<%@ include file="/html/portlet/communities/edit_pages_look_and_feel_themes.jspf" %>
 	</c:when>
 	
-	<c:when test='<%= tabs4.equals("themes-rules") %>'>
-		<%@ include file="/html/portlet/communities/edit_pages_themes_rules.jsp" %>
+	<c:when test='<%= tabs4.equals("device-rules") %>'>
+		<%@ include file="/html/portlet/communities/edit_pages_device_rules.jsp" %>
 	</c:when>	
 </c:choose>
