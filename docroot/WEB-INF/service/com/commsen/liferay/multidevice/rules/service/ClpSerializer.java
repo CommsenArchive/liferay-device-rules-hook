@@ -32,7 +32,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  */
 public class ClpSerializer {
-	public static final String SERVLET_CONTEXT_NAME = "theme-rules-hook";
+	public static final String SERVLET_CONTEXT_NAME = "device-rules-hook";
 
 	public static void setClassLoader(ClassLoader classLoader) {
 		_classLoader = classLoader;
